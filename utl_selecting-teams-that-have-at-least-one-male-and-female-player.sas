@@ -1,13 +1,17 @@
-SSelecting teams that have at least one male and female player Selecting teams that have at least one male and female player             
+Selecting teams that have at least one male and female player Selecting teams that have at least one male and female player             
                                                                                                                                         
 Three Solution (none were posted)                                                                                                       
                                                                                                                                         
     a. SQL having                                                                                                                       
     b. DOW                                                                                                                              
     c. SQL union                                                                                                                        
-    d. Datastep merge                                                                                                                   
+    d. datastep merge                                                                                                                   
        by Ghosh                                                                                                                         
        https://communities.sas.com/t5/user/viewprofilepage/user-id/78622                                                                
+    e. innovative logic - ( best solution one liner)                                                                                    
+       if first.id=0 and first.sex=1 then output; by                                                                                    
+       Yinglin (Max) Wu                                                                                                                 
+       yinglinwu@gmail.com                                                                                                              
                                                                                                                                         
 This why I use SAS as my base system, clarity, flexibility and spped.                                                                   
                                                                                                                                         
@@ -151,4 +155,17 @@ data new;
   drop test;                                                                                                                            
 run;                                                                                                                                    
                                                                                                                                         
+*                            _ _                                                                                                        
+  ___      ___  _ __   ___  | (_)_ __   ___ _ __                                                                                        
+ / _ \    / _ \| '_ \ / _ \ | | | '_ \ / _ \ '__|                                                                                       
+|  __/_  | (_) | | | |  __/ | | | | | |  __/ |                                                                                          
+ \___(_)  \___/|_| |_|\___| |_|_|_| |_|\___|_|                                                                                          
+                                                                                                                                        
+;                                                                                                                                       
+                                                                                                                                                                                                                                                                                
+data need(keep=id);                                                                                                                     
+  set have;                                                                                                                             
+  by id sex;                                                                                                                            
+  if first.id=0 and first.sex=1 then output;                                                                                            
+run;                                                                                                                                    
                                                                                                                                         
